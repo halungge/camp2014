@@ -1,4 +1,4 @@
-name := "simple_sbt_bootstrap"
+name := "camp2014akka"
 
 version := "1.0"
 
@@ -13,8 +13,10 @@ libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.3.2"
 
 libraryDependencies += "com.typesafe.akka" %% "akka-slf4j" % "2.3.2"
 
+libraryDependencies += "com.typesafe.akka" %% "akka-testkit"  % "2.3.2" % "test"
+
 //Scala test
-libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.0" % "test"
+libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.0" % "test"
 
 
 scalacOptions ++= Seq(
