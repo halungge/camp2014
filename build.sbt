@@ -2,21 +2,26 @@ name := "camp2014akka"
 
 version := "1.0"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.10.2"
 
+seq(scageSettings: _*)
+
+//Typesafe
 resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
 
-//resolvers += "spray repo" at "http://repo.spray.io"
+
+//spray
+resolvers += "spray repo" at "http://repo.spray.io"
 
 //dependencies for AKKA 
-libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.3.2"
+libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.3.2" withSources()
 
-libraryDependencies += "com.typesafe.akka" %% "akka-slf4j" % "2.3.2"
+libraryDependencies += "com.typesafe.akka" %% "akka-slf4j" % "2.3.2" withSources()
 
-libraryDependencies += "com.typesafe.akka" %% "akka-testkit"  % "2.3.2" % "test"
+libraryDependencies += "com.typesafe.akka" %% "akka-testkit"  % "2.3.2" % "test" withSources()
 
-//Scala test
-libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.0" % "test"
+//ScalaTest
+libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.0" % "test" withSources()
 
 
 scalacOptions ++= Seq(

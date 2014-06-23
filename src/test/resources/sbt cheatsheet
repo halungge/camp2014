@@ -1,0 +1,3 @@
+> sbt udpate-sbt-classifiers : download source-jars for SCALA standard libraries your dependencies. 
+
+append withSources() to your library definition in your build.sbt file to download the sources for libraries
