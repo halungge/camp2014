@@ -5,7 +5,6 @@ import akka.actor.Props
 import akka.actor.ActorLogging
 import akka.actor.ActorRef
 import scala.concurrent.duration._
-import scala.actors.threadpool.Executors.RunnableAdapter
 
 
 
