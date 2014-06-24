@@ -24,14 +24,16 @@ class PacmanManagerSpec extends TestKit(ActorSystem("PacmanManager-test"))
   "PacmanManager" should {
 	      
     "request new Field when receiving StartUp" in {
-    	val pacmanManager = TestActorRef(PacmanManager.props(testActor))
+    	val pacmanManager = system.actorOf(PacmanManager.props(testActor), "test1")
+    	within(0.second, 2.seconds){
         pacmanManager ! PacmanManager.StartUp
         expectMsg(StaticField.Ok)
+    	}
     }
+
 	  
-	 
 	  "pass Draw unto the uiManager upon each tick" in {
-	    val pacmanManager = TestActorRef(PacmanManager.props(testActor))
+	    val pacmanManager = system.actorOf(PacmanManager.props(testActor), "test2")
 	    pacmanManager ! PacmanManager.Tick
 	    expectMsg(Pacman.Draw)
 	  }

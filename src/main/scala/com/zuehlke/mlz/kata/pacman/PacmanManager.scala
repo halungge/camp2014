@@ -31,6 +31,8 @@ object PacmanManager{
 class PacmanManager(uiActor: ActorRef) extends Actor with ActorLogging{
   import PacmanManager._
   
+  val staticField = context.system.actorOf(StaticField.props)
+  val pacman = context.system.actorOf(Pacman.props(staticField))
   val scheduler = context.system.scheduler
   
   import scala.concurrent.ExecutionContext.Implicits.global
@@ -40,11 +42,8 @@ class PacmanManager(uiActor: ActorRef) extends Actor with ActorLogging{
     }
   } )
   
-  val staticField = context.system.actorOf(StaticField.props)
   
   
-  val field = context.system.actorOf(StaticField.props)
-  val pacman = context.system.actorOf(Pacman.props(field))
   
   def receive: Receive = {
     case StartUp => {

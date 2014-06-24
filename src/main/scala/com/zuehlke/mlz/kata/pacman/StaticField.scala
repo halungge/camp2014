@@ -20,9 +20,9 @@ class StaticField extends Actor with ActorLogging{
       sender ! newPosition
     }
      case field: PacmanManager.SetupField => {
+    	 size = field.size
       log.info(s"received request to setup new Field with size $size")
-      size = field.size
-      sender !Ok
+      sender ! Ok
   }
   }
 }
