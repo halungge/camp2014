@@ -6,6 +6,7 @@ import akka.actor.ActorLogging
 import akka.actor.ActorRef
 import scala.concurrent.duration._
 import scala.actors.threadpool.Executors.RunnableAdapter
+import sun.security.provider.certpath.ForwardBuilder
 
 
 
@@ -24,8 +25,7 @@ object PacmanManager{
   case object MoveDown
   
   //outgoing
-  case class Field(val size: Int)
-  case object SetupField
+  case class SetupField(size:Int)
   case object Tick
 }
 
@@ -41,12 +41,16 @@ class PacmanManager(uiActor: ActorRef) extends Actor with ActorLogging{
     }
   } )
   
-  val fieldGenerator = context.system.actorOf(FieldGenerator.props)
-  val pacman = context.system.actorOf(Pacman.props)
+  val staticField = context.system.actorOf(StaticField.props)
+  
+  
+  val field = context.system.actorOf(StaticField.props)
+  val pacman = context.system.actorOf(Pacman.props(field))
   
   def receive: Receive = {
     case StartUp => {
-      fieldGenerator.tell(SetupField, sender)
+      staticField.tell(SetupField(10), sender)
+      
     }
     case Tick => {
       pacman ! Tick

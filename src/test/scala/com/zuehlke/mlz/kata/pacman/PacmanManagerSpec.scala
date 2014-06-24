@@ -10,8 +10,10 @@ import org.scalatest.WordSpecLike
 import scala.concurrent.duration._
 import org.scalatest.BeforeAndAfterAll
 import akka.testkit.TestActorRef
+import com.zuehlke.mlz.kata.pacman.model.Position
+import com.zuehlke.mlz.kata.pacman.model.Position
 
-class PacmanManagerSpec extends TestKit(ActorSystem("Pacman-test"))
+class PacmanManagerSpec extends TestKit(ActorSystem("PacmanManager-test"))
   with Matchers 
   with WordSpecLike
   with BeforeAndAfterAll 
@@ -20,17 +22,18 @@ class PacmanManagerSpec extends TestKit(ActorSystem("Pacman-test"))
   
 
   "PacmanManager" should {
-	  val pacmanManager = TestActorRef(PacmanManager.props(testActor))
 	      
     "request new Field when receiving StartUp" in {
+    	val pacmanManager = TestActorRef(PacmanManager.props(testActor))
         pacmanManager ! PacmanManager.StartUp
-        expectMsg(PacmanManager.Field)
+        expectMsg(StaticField.Ok)
     }
 	  
 	 
 	  "pass Draw unto the uiManager upon each tick" in {
+	    val pacmanManager = TestActorRef(PacmanManager.props(testActor))
 	    pacmanManager ! PacmanManager.Tick
-	    expectMsg(Pacman.Draw("test", (1, 2)))
+	    expectMsg(Pacman.Draw)
 	  }
 	  
   }
