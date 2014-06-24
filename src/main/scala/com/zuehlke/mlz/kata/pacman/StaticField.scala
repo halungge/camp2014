@@ -16,7 +16,7 @@ class StaticField extends Actor with ActorLogging{
   
   def receive: Receive = {
     case Pacman.UpdatePosition(pos: Position, dir:(Int, Int)) => {
-      val newPosition  = Position(pos.x+ dir._2,  pos.y + dir._2)
+      val newPosition  = calculatePosition(pos, dir)
       sender ! newPosition
     }
      case field: PacmanManager.SetupField => {
@@ -25,4 +25,7 @@ class StaticField extends Actor with ActorLogging{
       sender ! Ok
   }
   }
+  
+  def calculatePosition(pos:Position, dir:(Int, Int)) = Position((pos.x + dir._1 + size) % size,  (pos.y + dir._2 + size) % size)
+  
 }
