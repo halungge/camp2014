@@ -7,13 +7,12 @@ scalaVersion := "2.11.0"
 //Typesafe
 resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
 
-
-
+resolvers += "Akka Snapshot Repository" at "http://repo.akka.io/snapshots/"
 
 
 
 //spray
-resolvers += "spray repo" at "http://repo.spray.io"
+//resolvers += "spray repo" at "http://repo.spray.io"
 
 libraryDependencies += "org.lwjgl.lwjgl" % "lwjgl_util" % "2.8.1" 
 
